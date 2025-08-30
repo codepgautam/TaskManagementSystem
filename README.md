@@ -36,7 +36,6 @@ internal/
 ├── service/         # Business logic layer
 └── handler/         # HTTP handlers (presentation layer)
 pkg/
-├── middleware/      # Reusable middleware components
 └── response/        # Standardized API responses
 ```
 
@@ -46,7 +45,6 @@ pkg/
 2. **Repository Layer**: Handles data persistence (currently in-memory)
 3. **Service Layer**: Contains business logic and validation
 4. **Handler Layer**: HTTP request/response handling
-5. **Middleware**: Cross-cutting concerns (logging, CORS, recovery)
 
 ## Design Decisions
 
@@ -380,7 +378,6 @@ task-management-system/
 │   ├── service/           # Business logic
 │   └── handler/           # HTTP handlers
 ├── pkg/
-│   ├── middleware/        # Reusable middleware
 │   └── response/         # API response utilities
 ├── Dockerfile             # Container definition
 ├── docker-compose.yml     # Multi-container setup
@@ -404,7 +401,6 @@ task-management-system/
 - **Input validation** at service layer
 - **Thread-safe operations** with mutex locks
 - **Standardized responses** for consistent API
-- **Middleware pattern** for cross-cutting concerns
 
 ## License
 
