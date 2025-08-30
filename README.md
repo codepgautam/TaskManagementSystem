@@ -55,7 +55,7 @@ pkg/
 
 ### 2. In-Memory Storage
 - Chosen for simplicity and demonstration purposes
-- Thread-safe implementation with mutex locks
+- Simple map-based storage for easy understanding
 - Easy to replace with database implementation
 
 ### 3. Error Handling
@@ -79,8 +79,8 @@ pkg/
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/pvnptl/task-management-system.git
-cd task-management-system
+git clone https://github.com/codepgautam/TaskManagementSystem.git
+cd TaskManagementSystem
 ```
 
 2. Install dependencies:
@@ -399,7 +399,7 @@ task-management-system/
 - **Dependency injection** for loose coupling
 - **Error handling** with proper HTTP status codes
 - **Input validation** at service layer
-- **Thread-safe operations** with mutex locks
+- **Simple in-memory storage** with basic map operations
 - **Standardized responses** for consistent API
 
 ## License

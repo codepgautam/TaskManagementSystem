@@ -6,9 +6,9 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
-	"github.com/pvnptl/task-management-system/internal/handler"
-	"github.com/pvnptl/task-management-system/internal/repository"
-	"github.com/pvnptl/task-management-system/internal/service"
+	"github.com/codepgautam/TaskManagementSystem/internal/handler"
+	"github.com/codepgautam/TaskManagementSystem/internal/repository"
+	"github.com/codepgautam/TaskManagementSystem/internal/service"
 )
 
 func main() {

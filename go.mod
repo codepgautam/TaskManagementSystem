@@ -1,4 +1,4 @@
-module github.com/pvnptl/task-management-system
+module github.com/codepgautam/TaskManagementSystem
 
 go 1.21
 
