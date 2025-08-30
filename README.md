@@ -46,74 +46,6 @@ pkg/
 3. **Service Layer**: Contains business logic and validation
 4. **Handler Layer**: HTTP request/response handling
 
-## Design Decisions
-
-### 1. Clean Architecture
-- **Dependency Inversion**: High-level modules don't depend on low-level modules
-- **Interface Segregation**: Small, focused interfaces
-- **Single Responsibility**: Each layer has a distinct purpose
-
-### 2. In-Memory Storage
-- Chosen for simplicity and demonstration purposes
-- Simple map-based storage for easy understanding
-- Easy to replace with database implementation
-
-### 3. Error Handling
-- Standardized error responses
-- Proper HTTP status codes
-- Error wrapping for better debugging
-
-### 4. API Design
-- RESTful endpoints following HTTP conventions
-- Consistent JSON response format
-- Query parameters for filtering and pagination
-
-## Getting Started
-
-### Prerequisites
-
-- Go 1.21 or higher
-- Docker (optional, for containerized deployment)
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/codepgautam/TaskManagementSystem.git
-cd TaskManagementSystem
-```
-
-2. Install dependencies:
-```bash
-go mod download
-```
-
-3. Run the service:
-```bash
-go run cmd/server/main.go
-```
-
-The service will start on port 8080 by default.
-
-### Using Docker
-
-1. Build and run with Docker Compose:
-```bash
-docker-compose up --build
-```
-
-2. Or build and run manually:
-```bash
-docker build -t task-management-system .
-docker run -p 8080:8080 task-management-system
-```
-
-### Running Tests
-
-```bash
-go test ./...
-```
-
 ## API Documentation
 
 Base URL: `http://localhost:8080/api/v1`
@@ -233,54 +165,11 @@ All error responses follow this format:
 }
 ```
 
-## Microservices Concepts
-
-### 1. Single Responsibility Principle
-Each component has a clear, single responsibility:
-- **Domain**: Business entities and rules
-- **Repository**: Data access and persistence
-- **Service**: Business logic and validation
-- **Handler**: HTTP request/response handling
-- **Middleware**: Cross-cutting concerns
-
-### 2. API Design
-- RESTful endpoints following HTTP conventions
-- Consistent response format across all endpoints
-- Proper HTTP status codes
-- Versioned API (`/api/v1`)
-
-### 3. Separation of Concerns
-- Clean separation between layers
-- Dependency injection for loose coupling
-- Interface-based design for testability
-
-### 4. Stateless Design
-- No server-side session state
-- Each request contains all necessary information
-- Enables horizontal scaling
-
 ## Scaling Considerations
 
 ### Horizontal Scaling
 
 1. **Load Balancing**: Multiple service instances behind a load balancer
-2. **Database Scaling**: Replace in-memory storage with distributed database
-3. **Caching**: Add Redis for frequently accessed data
-4. **Container Orchestration**: Use Kubernetes for auto-scaling
-
-### Vertical Scaling
-
-1. **Resource Optimization**: Increase CPU/memory for existing instances
-2. **Connection Pooling**: Optimize database connections
-3. **Performance Monitoring**: Monitor and optimize bottlenecks
-
-### Implementation Strategy
-
-```bash
-# Example Kubernetes deployment
-kubectl apply -f k8s/
-kubectl scale deployment task-service --replicas=3
-```
 
 ## Inter-Service Communication
 
@@ -310,7 +199,7 @@ user, err := userClient.GetUser(ctx, &pb.GetUserRequest{Id: userID})
 
 #### 2. Asynchronous Communication
 
-**Message Queues** (RabbitMQ, Apache Kafka):
+**Message Queues** (Apache Kafka):
 ```go
 // Publish task events
 publisher.Publish("task.created", TaskCreatedEvent{
