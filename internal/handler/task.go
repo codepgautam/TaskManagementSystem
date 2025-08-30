@@ -71,21 +71,12 @@ func (h *TaskHandler) GetTasks(w http.ResponseWriter, r *http.Request) {
 	// Parse query parameters
 	query := r.URL.Query()
 	
-	// Parse pagination
+	// Parse pagination (only HTTP parsing, no business logic)
 	page, _ := strconv.Atoi(query.Get("page"))
-	if page < 1 {
-		page = 1
-	}
-	
 	pageSize, _ := strconv.Atoi(query.Get("page_size"))
-	if pageSize < 1 || pageSize > 100 {
-		pageSize = 10
-	}
 	
-	pagination := domain.Pagination{
-		Page:     page,
-		PageSize: pageSize,
-	}
+	// Use domain constructor for validation and defaults
+	pagination := domain.NewPagination(page, pageSize)
 	
 	// Parse filters
 	filter := domain.TaskFilter{}

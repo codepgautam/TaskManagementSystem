@@ -60,14 +60,7 @@ func (r *MemoryTaskRepository) GetAll(filter domain.TaskFilter, pagination domai
 	
 	totalCount := len(allTasks)
 	
-	// Apply pagination
-	if pagination.Page < 1 {
-		pagination.Page = 1
-	}
-	if pagination.PageSize < 1 {
-		pagination.PageSize = 10
-	}
-	
+	// Apply pagination (assumes pagination is already validated)
 	start := (pagination.Page - 1) * pagination.PageSize
 	end := start + pagination.PageSize
 	

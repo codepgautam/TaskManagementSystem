@@ -34,6 +34,30 @@ type Pagination struct {
 	PageSize int `json:"page_size"`
 }
 
+// NewPagination creates a pagination with defaults and validation
+func NewPagination(page, pageSize int) Pagination {
+	if page < 1 {
+		page = 1
+	}
+	if pageSize < 1 || pageSize > 100 {
+		pageSize = 10
+	}
+	return Pagination{
+		Page:     page,
+		PageSize: pageSize,
+	}
+}
+
+// Validate ensures pagination parameters are valid
+func (p *Pagination) Validate() {
+	if p.Page < 1 {
+		p.Page = 1
+	}
+	if p.PageSize < 1 || p.PageSize > 100 {
+		p.PageSize = 10
+	}
+}
+
 // TaskRepository defines the interface for task storage operations
 type TaskRepository interface {
 	Create(task *Task) error

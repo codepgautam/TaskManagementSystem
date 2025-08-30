@@ -67,13 +67,8 @@ func (s *TaskService) GetTask(id string) (*domain.Task, error) {
 
 // GetTasks retrieves tasks with filtering and pagination
 func (s *TaskService) GetTasks(filter domain.TaskFilter, pagination domain.Pagination) ([]*domain.Task, int, error) {
-	// Set default pagination values
-	if pagination.Page < 1 {
-		pagination.Page = 1
-	}
-	if pagination.PageSize < 1 || pagination.PageSize > 100 {
-		pagination.PageSize = 10
-	}
+	// Ensure pagination is valid (defensive programming)
+	pagination.Validate()
 	
 	return s.repo.GetAll(filter, pagination)
 }
